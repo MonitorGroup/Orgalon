@@ -4,7 +4,6 @@ import com.monitor.orgalon.core.constants.MonitorMenuEnum;
 
 /**
  * 单项监控配置
- *
  * @author niuniu
  * @version 1.0.0
  * @since 1.0.0
