@@ -32,33 +32,33 @@ public class OrgalonServiceImpl implements OrgalonService {
     private static volatile Map<MonitorMenuEnum,ExecutorService> monitorMenuEnumExecutorServiceMap;
 
     @Override
-    public void start(BaseMonitorConfig config, List<MonitorMenuConfig> monitorMenuConfigList,List<ResultCallback> callbackList) {
-        if (!config.isMainSwitch() || CollectionUtils.isEmpty(monitorMenuConfigList)) {
+    public void start(BaseMonitorConfig config,Map<MonitorMenuEnum,List<ResultCallback>> callbackMap) {
+        if (config == null || !config.isMainSwitch() || CollectionUtils.isEmpty(config.getMonitorMenuList())) {
             return;
         }
         if (LOGGER.isInfoEnabled()) {
             LOGGER.info("Orgalon监控开始初始化");
         }
-        monitorMenuEnumExecutorServiceMap = new HashedMap(monitorMenuConfigList.size());
-        for (MonitorMenuConfig monitorMenuConfig : monitorMenuConfigList) {
+        monitorMenuEnumExecutorServiceMap = new HashedMap(config.getMonitorMenuList().size());
+        for (MonitorMenuConfig monitorMenuConfig : config.getMonitorMenuList()) {
             switch (monitorMenuConfig.getMonitorMenu()) {
                 case THREAD:
                     ScheduledExecutorService threadScheduledExecutor = Executors.newSingleThreadScheduledExecutor();
                     monitorMenuEnumExecutorServiceMap.put(MonitorMenuEnum.THREAD,threadScheduledExecutor);
-                    new ThreadHandler().startMonitor(threadScheduledExecutor, callbackList, monitorMenuConfig);
+                    new ThreadHandler().startMonitor(threadScheduledExecutor, callbackMap.get(MonitorMenuEnum.THREAD), monitorMenuConfig);
                     break;
                 case GC:
                     ExecutorService gcThreadExecutor = Executors.newSingleThreadExecutor();
                     monitorMenuEnumExecutorServiceMap.put(MonitorMenuEnum.GC,gcThreadExecutor);
-                    new GcMonitorHandler().startMonitor(gcThreadExecutor,callbackList,monitorMenuConfig);
+                    new GcMonitorHandler().startMonitor(gcThreadExecutor,callbackMap.get(MonitorMenuEnum.GC),monitorMenuConfig);
                     break;
                 case MEMORY:
                     ScheduledExecutorService memoryScheduledExecutor = Executors.newSingleThreadScheduledExecutor();
                     monitorMenuEnumExecutorServiceMap.put(MonitorMenuEnum.MEMORY,memoryScheduledExecutor);
-                    new ThreadHandler().startMonitor(memoryScheduledExecutor,callbackList,monitorMenuConfig);
+                    new ThreadHandler().startMonitor(memoryScheduledExecutor,callbackMap.get(MonitorMenuEnum.MEMORY),monitorMenuConfig);
                     break;
                 default:
-                    LOGGER.error("Orgalon监控初始化异常,异常配置: {}", monitorMenuConfig);
+                    LOGGER.error("orgalon监控初始化异常,异常配置: {}", monitorMenuConfig);
                     break;
             }
         }

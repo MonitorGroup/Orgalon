@@ -7,10 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>orgalon-spring</artifactId>
+    <artifactId>orgalon-demo</artifactId>
     <packaging>jar</packaging>
 
-    <name>orgalon-spring</name>
+    <name>orgalon-demo</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -18,21 +18,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.monitor.orgalon</groupId>
-            <artifactId>orgalon-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <!-- spring开始 -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-        </dependency>
-        <!-- spring结束 -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

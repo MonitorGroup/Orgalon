@@ -53,7 +53,9 @@ public abstract class AbstractDefaultMonitorHandler<T> {
         }
     }
 
-
+    /**
+     * 监控线程,每一个监控功能,会开启一个线程(由startMonitor方法创建)
+     */
     private class MonitorProcess implements Runnable {
         private List<ResultCallback> callbackList;
 
