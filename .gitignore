@@ -51,3 +51,10 @@ test-output/
 output/
 /.idea
 .MF
+/target/
+
+.settings/
+.project
+.classpath
+*iml
+
