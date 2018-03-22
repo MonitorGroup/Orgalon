@@ -15,7 +15,7 @@ public class MonitorBean {
   /**
    * 监控项
    */
-  private MonitorEnum monitorEnum;
+  private MonitorEnum monitor;
 
   /**
    * 初始延迟时间，单位：毫秒 默认初始延迟时间：0秒
@@ -30,14 +30,14 @@ public class MonitorBean {
   /**
    * 回调函数
    */
-  private ResultCallback<CallbackBean> callback;
+  private ResultCallback resultCallback;
 
-  public MonitorEnum getMonitorEnum() {
-    return this.monitorEnum;
+  public MonitorEnum getMonitor() {
+    return this.monitor;
   }
 
-  public void setMonitorEnum(MonitorEnum monitorEnum) {
-    this.monitorEnum = monitorEnum;
+  public void setMonitor(MonitorEnum monitor) {
+    this.monitor = monitor;
   }
 
   public long getInitialDelay() {
@@ -56,17 +56,17 @@ public class MonitorBean {
     this.delay = delay;
   }
 
-  public ResultCallback<CallbackBean> getCallback() {
-    return this.callback;
+  public ResultCallback getResultCallback() {
+    return this.resultCallback;
   }
 
-  public void setCallback(ResultCallback<CallbackBean> callback) {
-    this.callback = callback;
+  public void setResultCallback(ResultCallback resultCallback) {
+    this.resultCallback = resultCallback;
   }
 
   @Override
   public String toString() {
-    return "MonitorBean [monitorEnum=" + this.monitorEnum + ", initialDelay=" + this.initialDelay
-        + ", delay=" + this.delay + ", callback=" + this.callback + "]";
+    return "MonitorBean [monitor=" + this.monitor + ", initialDelay=" + this.initialDelay
+        + ", delay=" + this.delay + ", resultCallback=" + this.resultCallback + "]";
   }
 }

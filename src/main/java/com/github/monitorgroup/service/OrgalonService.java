@@ -17,9 +17,9 @@ public interface OrgalonService {
   /**
    * 开启监控
    *
-   * @param monitorMenuConfigList 监控项列表
+   * @param monitorBeanList 监控项列表
    */
-  void start(List<MonitorBean> monitorMenuConfigList);
+  void start(List<MonitorBean> monitorBeanList);
 
   /**
    * 停止监控

@@ -10,7 +10,7 @@ import com.github.monitorgroup.bean.CallbackBean;
  * @version 1.0.0
  * @since 1.0.0
  */
-public interface ResultCallback<T extends CallbackBean> {
+public interface ResultCallback {
 
-  void callback(T monitorResult);
+  void callback(CallbackBean callbackBean);
 }

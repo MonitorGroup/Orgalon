@@ -26,6 +26,8 @@ public class OrgalonServiceImpl implements OrgalonService {
   private volatile ScheduledExecutorService scheduledExecutorService;
   private final List<AbstractMonitorHandler<?>> handlerList = new ArrayList<>();
 
+  public OrgalonServiceImpl() {}
+
   public OrgalonServiceImpl(ScheduledExecutorService scheduledExecutorService) {
     this.scheduledExecutorService = scheduledExecutorService;
   }
@@ -36,12 +38,12 @@ public class OrgalonServiceImpl implements OrgalonService {
     if (monitorBeanList != null && monitorBeanList.size() > 0) {
       this.initScheduledExecutorService(monitorBeanList);
       for (MonitorBean monitorBean : monitorBeanList) {
-        if (monitorBean == null) {
-          LOGGER.error("OrgalonServiceImpl start config monitorBean is null");
+        if (monitorBean == null || monitorBean.getResultCallback() == null) {
+          LOGGER.error("OrgalonServiceImpl start config monitorBean illegal: {}", monitorBean);
           continue;
         }
         AbstractMonitorHandler<?> handler = null;
-        switch (monitorBean.getMonitorEnum()) {
+        switch (monitorBean.getMonitor()) {
           case THREAD:
             handler = new ThreadMonitorHandler();
             break;
@@ -75,17 +77,17 @@ public class OrgalonServiceImpl implements OrgalonService {
       }
       int count = 0;
       for (MonitorBean monitorBean : monitorBeanList) {
-        if (monitorBean == null || monitorBean.getMonitorEnum() == null
-            || monitorBean.getMonitorEnum().asyn) {
+        if (monitorBean == null || monitorBean.getMonitor() == null
+            || monitorBean.getMonitor().asyn) {
           continue;
         }
         count++;
       }
       ScheduledExecutorService scheduledExecutorService = null;
-      if (count == 0) {
+      if (count > 0) {
         scheduledExecutorService = Executors.newScheduledThreadPool(count);
+        this.scheduledExecutorService = scheduledExecutorService;
       }
-      this.scheduledExecutorService = scheduledExecutorService;
     }
   }
 

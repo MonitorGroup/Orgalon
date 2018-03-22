@@ -3,7 +3,6 @@ package com.github.monitorgroup.service.impl;
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
 
-import com.github.monitorgroup.bean.CallbackBean;
 import com.github.monitorgroup.bean.ThreadInfoCallbackBean;
 import com.github.monitorgroup.service.AbstractMonitorHandler;
 import com.github.monitorgroup.service.ResultCallback;
@@ -19,7 +18,7 @@ import com.github.monitorgroup.service.ResultCallback;
 public class ThreadMonitorHandler extends AbstractMonitorHandler<ThreadInfoCallbackBean> {
 
   @Override
-  protected void doAction(ResultCallback<CallbackBean> resultCallback) {
+  protected void doAction(ResultCallback resultCallback) {
     // 当前监控时间的线程对象。每个监控周期会更新
     ThreadInfoCallbackBean threadInfoEntity = new ThreadInfoCallbackBean();
 

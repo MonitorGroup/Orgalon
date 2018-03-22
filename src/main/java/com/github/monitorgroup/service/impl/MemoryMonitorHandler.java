@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.github.monitorgroup.bean.CallbackBean;
 import com.github.monitorgroup.bean.MemoryCommonBean;
 import com.github.monitorgroup.bean.MemoryInfoCallbackBean;
 import com.github.monitorgroup.bean.MemoryInfoCallbackBean.MemoryPoolInfoEntity;
@@ -26,7 +25,7 @@ import com.github.monitorgroup.service.ResultCallback;
 public class MemoryMonitorHandler extends AbstractMonitorHandler<MemoryInfoCallbackBean> {
 
   @Override
-  protected void doAction(ResultCallback<CallbackBean> resultCallback) {
+  protected void doAction(ResultCallback resultCallback) {
     // 当前监控时间的内存对象。每个监控周期会更新
     MemoryInfoCallbackBean memoryInfoEntity = new MemoryInfoCallbackBean();
 

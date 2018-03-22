@@ -19,7 +19,6 @@ import javax.management.openmbean.CompositeData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.monitorgroup.bean.CallbackBean;
 import com.github.monitorgroup.bean.GCInfoCallbackBean;
 import com.github.monitorgroup.bean.MemoryCommonBean;
 import com.github.monitorgroup.bean.OrgalonConstants;
@@ -49,7 +48,7 @@ public class GCMonitorHandler extends AbstractMonitorHandler<GCInfoCallbackBean>
    * 因为gc的监听是通过listener,所以没有返回值,用占位符Void替代返回值
    */
   @Override
-  protected void doAction(final ResultCallback<CallbackBean> resultCallback) {
+  protected void doAction(final ResultCallback resultCallback) {
     List<GarbageCollectorMXBean> garbageCollectorMXBeanList =
         ManagementFactory.getGarbageCollectorMXBeans();
     if (garbageCollectorMXBeanList == null || garbageCollectorMXBeanList.isEmpty()) {
