@@ -24,7 +24,8 @@ public class OrgalonServiceImpl implements OrgalonService {
   private static final Logger LOGGER = LoggerFactory.getLogger(OrgalonServiceImpl.class);
 
   private volatile ScheduledExecutorService scheduledExecutorService;
-  private final List<AbstractMonitorHandler<?>> handlerList = new ArrayList<>();
+  private final List<AbstractMonitorHandler<?>> handlerList =
+      new ArrayList<AbstractMonitorHandler<?>>();
 
   public OrgalonServiceImpl() {}
 
